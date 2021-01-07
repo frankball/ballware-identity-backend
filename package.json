@@ -1,55 +1,70 @@
 {
   "name": "@ballware/identity-backend",
-  "version": "6.0.0-alpha1",
+  "version": "6.0.0-beta1",
   "description": "Ballware Application Builder - Client for identity provider backend",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
-  },
-  "files": [
-    "dist/**/*"
-  ],
-  "exports": {
-    ".": "./dist"
-  },
-  "keywords": [],
   "author": "frank@ballmeyer.com",
   "license": "MIT",
   "homepage": "https://github.com/frankball/ballware-identity-backend",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.10.0",
-    "@typescript-eslint/parser": "^4.10.0",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
-    "prettier": "^2.2.1",
-    "typescript": "^4.1.3"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankball/ballware-identity-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frankball/ballware-identity-backend/issues"
+  },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint --fix",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "axios": ">=0.21.0"
   },
   "dependencies": {
-    "axios": "^0.21.0",
-    "@ballware/identity-interface": "^6.0.0-alpha2"
+    "@ballware/identity-interface": "^6.0.0-beta1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
   },
   "prettier": {
-    "printWidth": 120,
-    "trailingComma": "all",
-    "singleQuote": true
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "eslint-config-prettier"
-    ],
-    "ignorePatterns": [
-      "node_modules",
-      "dist",
-      "spec"
-    ]
+  "module": "dist/ballware-identity-backend.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/ballware-identity-backend.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/ballware-identity-backend.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.9.1",
+    "husky": "^4.3.7",
+    "size-limit": "^4.9.1",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.3",
+    "axios": "^0.21.0"
   }
 }
