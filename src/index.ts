@@ -1,3 +1,3 @@
-export { createIdentityBackendAuthApi } from './auth';
-export { createIdentityBackendUserApi } from './user';
-export { createIdentityBackendRoleApi } from './role';
+export * from './resourceownerauth';
+export * from './user';
+export * from './role';

@@ -1,4 +1,11 @@
-import { Session, SessionWithUserInfo, IdentityAuthApi } from '@ballware/identity-interface';
+/**
+ * @license
+ * Copyright 2021 Frank Ballmeyer
+ * This code is released under the MIT license.
+ * SPDX-License-Identifier: MIT
+ */
+
+import { Session, SessionWithUserInfo, ResourceOwnerAuthApi } from '@ballware/identity-interface';
 import axios from 'axios';
 
 interface TokenResponse {
@@ -163,7 +170,12 @@ const refreshTokenFunc = (serviceBaseUrl: string) => (
   });
 };
 
-export function createIdentityBackendAuthApi(serviceBaseUrl: string, scopes: string): IdentityAuthApi {
+/**
+ * Create API adapter for ballware.identity.server with resource owner auth flow
+ * @param serviceBaseUrl Base URL of identity provider to use
+ * @param scopes Collection of requested scopes
+ */
+export function createResourceOwnerAuthApi(serviceBaseUrl: string, scopes: string): ResourceOwnerAuthApi {
   return {
     login: loginFunc(serviceBaseUrl, scopes),
     logout: logoutFunc(serviceBaseUrl),
@@ -172,5 +184,5 @@ export function createIdentityBackendAuthApi(serviceBaseUrl: string, scopes: str
     resetPassword: resetPasswordFunc(serviceBaseUrl),
     changePassword: changePasswordFunc(serviceBaseUrl),
     refreshToken: refreshTokenFunc(serviceBaseUrl),
-  } as IdentityAuthApi;
+  } as ResourceOwnerAuthApi;
 }

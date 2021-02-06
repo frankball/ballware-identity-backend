@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright 2021 Frank Ballmeyer
+ * This code is released under the MIT license.
+ * SPDX-License-Identifier: MIT
+ */
+
 import { IdentityRoleApi } from '@ballware/identity-interface';
 import axios from 'axios';
 
@@ -20,6 +27,10 @@ const selectByIdFunc = (serviceBaseUrl: string) => (
     .then((response) => response.data);
 };
 
+/**
+ * Create API adapter for ballware.identity.server role list access
+ * @param serviceBaseUrl Base url for ballware.identity.server to use
+ */
 export function createIdentityBackendRoleApi(serviceBaseUrl: string): IdentityRoleApi {
   return {
     selectListFunc: selectListFunc(serviceBaseUrl),
