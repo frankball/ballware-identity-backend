@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { Session, SessionWithUserInfo, ResourceOwnerAuthApi } from '@ballware/identity-interface';
+import { Session, SessionWithUserInfo, ResourceOwnerAuthApi, MappedSessionWithUserRights } from '@ballware/identity-interface';
 import axios from 'axios';
 
 interface TokenResponse {
@@ -19,12 +19,12 @@ interface UserInfoResponse extends Record<string, unknown> {
   preferred_username: string;
 }
 
-const loginFunc = (serviceBaseUrl: string, scopes: string) => <T extends SessionWithUserInfo>(
+const loginFunc = (serviceBaseUrl: string, scopes: string) => <T extends MappedSessionWithUserRights>(
   email: string,
   password: string,
   client: string,
   secret: string,
-  userinfoMapper: (sessionWithUserInfo: T, userinfo: Record<string, unknown>) => T,
+  userinfoMapper: (sessionWithUserInfo: SessionWithUserInfo, userinfo: Record<string, unknown>) => T,
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     const tokenUrl = `${serviceBaseUrl}connect/token`;
@@ -53,7 +53,7 @@ const loginFunc = (serviceBaseUrl: string, scopes: string) => <T extends Session
               refresh_token: tokenResponse.data.refresh_token,
               expires_in: tokenResponse.data.expires_in,
               identifier: userinfoResponse.data.sub,
-              email: userinfoResponse.data.preferred_username,
+              email: userinfoResponse.data.preferred_username
             } as T;
 
             if (userinfoMapper) {

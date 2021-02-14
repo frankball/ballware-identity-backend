@@ -26,7 +26,7 @@ Name | Type | Description |
 
 **Returns:** IdentityRoleApi
 
-Defined in: [role.ts:27](https://github.com/frankball/ballware-identity-backend/blob/54b6889/src/role.ts#L27)
+Defined in: [role.ts:34](https://github.com/frankball/ballware-identity-backend/blob/7711a21/src/role.ts#L34)
 
 ___
 
@@ -44,7 +44,7 @@ Name | Type | Description |
 
 **Returns:** IdentityUserApi
 
-Defined in: [user.ts:34](https://github.com/frankball/ballware-identity-backend/blob/54b6889/src/user.ts#L34)
+Defined in: [user.ts:34](https://github.com/frankball/ballware-identity-backend/blob/7711a21/src/user.ts#L34)
 
 ___
 
@@ -63,4 +63,4 @@ Name | Type | Description |
 
 **Returns:** ResourceOwnerAuthApi
 
-Defined in: resourceownerauth.ts:171
+Defined in: [resourceownerauth.ts:178](https://github.com/frankball/ballware-identity-backend/blob/7711a21/src/resourceownerauth.ts#L178)
